@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+
+    <!-- update the version number as needed -->
+    <script src="/__/firebase/10.2.0/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script src="/__/firebase/10.2.0/firebase-auth-compat.js"></script>
+    <script src="/__/firebase/10.2.0/firebase-database-compat.js"></script>
+    <script src="/__/firebase/10.2.0/firebase-firestore-compat.js"></script>
+    <script src="/__/firebase/10.2.0/firebase-functions-compat.js"></script>
+    <script src="/__/firebase/10.2.0/firebase-messaging-compat.js"></script>
+    <script src="/__/firebase/10.2.0/firebase-storage-compat.js"></script>
+    <script src="/__/firebase/10.2.0/firebase-analytics-compat.js"></script>
+    <script src="/__/firebase/10.2.0/firebase-remote-config-compat.js"></script>
+    <script src="/__/firebase/10.2.0/firebase-performance-compat.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.25.2.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="acc.js"></script>
+
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script  src="/__/firebase/init.js?useEmulator=true"></script>
+
+  </head>
+
+  <body>
+    <script>
+      /**
+       * get the data from the database and load the plots
+       */
+      function LoadPagePlots() {
+        fetch('http://localhost:5001/voyteklabstudy/us-central1/getDataJSON')
+          .then(response => response.text())
+          .then(data => {
+            // console.log(data);
+            loadJson(data);
+          });
+      }
+
+      LoadPagePlots();
+    </script>
+    <div id="centerDiv"></div>
+
+    <!-- sends response to firebase realtime server -->
+    <button onclick="sendResponse()">Submit Selections</button>
+  </body>
+
+</html>
